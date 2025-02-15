@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Login Admin money69</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="shortcut icon" href="https://i.ibb.co.com/c1Y5pM7/owner.jpg" type="image/x-icon">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
+  <link rel="preconnect" href="https://fonts.googleapis.com"> 
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu&amp;display=swap" rel="stylesheet"> 
+</head>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: black;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        
+        body.locked {
+            pointer-events: none; /* Menonaktifkan interaksi */
+            opacity: 0.5; /* Mengubah tampilan untuk menunjukkan bahwa aplikasi terkunci */
+        }
+        #lockMessage {
+            display: none; /* Sembunyikan pesan kunci secara default */
+            color: red;
+            font-weight: bold;
+        }
+
+        .container {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 600px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
+            border: 4px solid;
+            animation: borderGlow 1.5s infinite alternate, fadeIn 1.5s ease-in-out;
+        }
+
+        .title {
+            font-size: 28px;
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+            animation: animateTitle 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+        
+          .container img {
+            width: 100%;
+            height: auto;
+            max-height: 250px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .notification {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    animation: buttonGlow 2s infinite;
+}
+
+        .success {
+    background-color: #d4edda;
+    color: #155724;
+    animation: buttonGlow 2s infinite;
+}
+
+        .error {
+    background-color: #f8d7da;
+    color: #721c24;
+    animation: buttonGlow 2s infinite;
+}
+
+        @keyframes animateTitle {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(0); }
+        }
+
+        .description {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 30px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .qr-section h2 {
+            font-size: 22px;
+            color: #222;
+            margin-bottom: 10px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .qr-container {
+            position: relative;
+            margin-bottom: 20px;
+            border: 4px solid;
+            border-radius: 8px;
+            padding: 10px;
+            background-color: #fafafa;
+            animation: borderGlow 1.5s infinite alternate, fadeIn 1.5s ease-in-out;
+        }
+
+        .qr-container img {
+            width: 300px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .qr-controls {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .qr-controls button, .qr-controls a {
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: buttonGlow 2s infinite;
+        }
+
+        .qr-controls button:hover, .qr-controls a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes buttonGlow {
+            0% { 
+                background-color: #ff4d4d;
+                box-shadow: 0 4px 8px rgba(255, 77, 77, 0.6);
+            }
+            25% { 
+                background-color: #4d79ff;
+                box-shadow: 0 4px 8px rgba(77, 121, 255, 0.6);
+            }
+            50% { 
+                background-color: #33cc33;
+                box-shadow: 0 4px 8px rgba(51, 204, 51, 0.6);
+            }
+            75% { 
+                background-color: #ffb74d;
+                box-shadow: 0 4px 8px rgba(255, 183, 77, 0.6);
+            }
+            100% { 
+                background-color: #ff4d4d;
+                box-shadow: 0 4px 8px rgba(255, 77, 77, 0.6);
+            }
+        }
+        
+        .p {
+          color: red;
+        }
+
+        .payment-section {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .payment-method {
+            border: 4px solid;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 10px;
+            background-color: #fafafa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 200px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: borderGlow 1.5s infinite alternate, fadeIn 1.5s ease-in-out;
+        }
+
+        .payment-method img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .payment-method p {
+            margin: 5px 0;
+            color: #444;
+            font-size: 14px;
+        }
+
+        .copy-btn {
+            margin-top: 5px;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            animation: buttonGlow 2s infinite;
+        }
+
+        .copy-btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #888;
+            animation: borderGlow 1.5s infinite alternate, fadeIn 1.5s ease-in-out;
+        }
+
+        .whatsapp-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #25d366;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #1ebe57;
+            transform: scale(1.05);
+        }
+
+        .social-icons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border-radius: 50%;
+            color: black;
+            font-size: 28px;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: borderGlow 2s infinite;
+        }
+        
+                .floating-window {
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000; /* Pastikan jendela di atas elemen lain */
+            animation: borderGlow 1.5s infinite alternate, fadeIn 1.5s ease-in-out;
+        }
+
+.login-container {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+.social-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.8);
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    animation: borderGlow 1.5s infinite alternate, fadeIn 1.5s ease-in-out;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#message {
+    margin-top: 15px;
+    color: red;
+}
+
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes borderGlow {
+            0% { border-color: #ff4d4d; box-shadow: 0 0 10px rgba(255, 77, 77, 0.6); }
+            25% { border-color: #4d79ff; box-shadow: 0 0 10px rgba(77, 121, 255, 0.6); }
+            50% { border-color: #33cc33; box-shadow: 0 0 10px rgba(51, 204, 51, 0.6); }
+            75% { border-color: #ffb74d; box-shadow: 0 0 10px rgba(255, 183, 77, 0.6); }
+            100% { border-color: #ff4d4d; box-shadow: 0 0 10px rgba(255, 77, 77, 0.6); }
+        }
+</style>
+<body>
+    
+  <div class="container">
+  <p class="title">Login admin</p>
+<img src="https://snapmoney.site/_next/image?url=https%3A%2F%2Fsnapmoney.site%2Fstorage%2Fwebpersonalize%2Fb2be40ea-f450-4472-8e01-9bafd1adb35c.png&w=640&q=10" width="400" height="400" alt="hack">
+<h1 class="title"></h1>
+<form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form><br>
+        </form>
+        <div id="message"></div>
+  </body>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Mencegah form dari pengiriman default
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Ganti dengan username dan password yang diinginkan
+    const validUsername = 'admin';
+    const validPassword = 'adminmoney69';
+
+    if (username === validUsername && password === validPassword) {
+        function createFloatingWindow() {
+        const windowDiv = document.createElement('div');
+        windowDiv.className = 'floating-window';
+        windowDiv.innerText = `Login Sucees\nMemory: ${navigator.deviceMemory} GB`;
+        
+const x = Math.random() * (window.innerWidth - 1);
+windowDiv.style.top = `${x}px`;
+
+        document.body.appendChild(windowDiv);
+
+        // Hapus jendela setelah 5 detik
+        setTimeout(() => {
+            windowDiv.remove();
+        }, 3000);
+    }
+
+    // Buat jendela setiap 2 detik
+    createFloatingWindow()
+        // Redirect atau lakukan tindakan lain setelah login berhasil
+        window.location.href = "dashboard.html"
+    } else {
+      function createFloatingWindow() {
+        const windowDiv = document.createElement('div');
+        windowDiv.className = 'floating-window';
+        windowDiv.innerText = `Login gagal\nMemory: ${navigator.deviceMemory} GB`;
+        
+const x = Math.random() * (window.innerWidth - 1);
+windowDiv.style.top = `${x}px`;
+
+        document.body.appendChild(windowDiv);
+
+        // Hapus jendela setelah 5 detik
+        setTimeout(() => {
+            windowDiv.remove();
+        }, 3000);
+    }
+
+    // Buat jendela setiap 2 detik
+    createFloatingWindow()
+    }
+});
+  </script>
+  </html>
